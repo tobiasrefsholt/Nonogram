@@ -6,13 +6,16 @@ window.addEventListener("load", () => {
 
 function initGame() {
     model.app.page = "activeGame";
+    const nonogram = generateNonogramModel(model.fields.options.boardSize);
+    model.nonogram = nonogram;
+    model.fields.cells = generateEmptyNonogramFields(model.fields.options.boardSize);
     updateView();
 }
 
 function generateNonogramModel(size) {
     const grid = generateNonogramModelGrid(size);
     const numbers = getNonogramModelNumbers(grid);
-    return [grid, numbers]
+    return {grid, numbers}
 }
 
 function generateNonogramModelGrid(size) {
@@ -69,4 +72,17 @@ function getColumn(grid, columnIndex) {
         column.push(grid[i][columnIndex]);
     }
     return column;
+}
+
+
+function generateEmptyNonogramFields(size) {
+    const grid = [];
+    for (let i=0; i<size; i++) {
+        const row = [];
+        for (let i=0; i<size; i++) {
+            row.push([0]);
+        }
+        grid.push(row);
+    }
+    return grid;
 }

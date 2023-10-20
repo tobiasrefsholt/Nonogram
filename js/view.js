@@ -37,45 +37,48 @@ function getOptionsHTML() {
 }
 
 function getGameHTML() {
-    const size = model.app.boardSize;
+    const size = model.fields.options.boardSize;
     return /* html */ `
         <div class="game-grid grid-size-${size}">
-            ${getGameGridCellsHTML(size)}
+            ${getGameCellsHTML(size)};
         </div>
     `;
 }
 
-function getGameGridCellsHTML(size) {
+function getGameCellsHTML(size) {
     let cellsHTML = '';
     for (let rowCount = 0; rowCount <= size; rowCount++) {
         for (let columnCount = 0; columnCount <= size; columnCount++) {
-            cellsHTML += getCellHTML(rowCount, columnCount);
+            if (rowCount == 0 || columnCount == 0) {
+                cellsHTML += getNumberCellsHTML(rowCount, columnCount);
+            } else {
+                cellsHTML += getCellHTML(rowCount, columnCount);
+            }
         }
     }
     return cellsHTML;
 }
 
-function getCellHTML(rowCount, columnCount) {
-    const numbers = model.fields.numbers;
-    const cells = model.fields.cells;
-    
-    if (rowCount == 0 && columnCount == 0) {
-        return /* html */ `
-            <div class="grid-cell" row="${rowCount}" column="${columnCount}"></div>
-        `;
-    }
+function getNumberCellsHTML(rowCount, columnCount) {
+    const numbers = model.nonogram.numbers;
+
+    if (rowCount == 0 && columnCount == 0) return `<div class="grid-cell grid-numbers-row"></div>`;
 
     if (rowCount == 0) {
         return /* html */ `
-            <div class="grid-cell" row="${rowCount}" column="${columnCount}">${numbers.x[columnCount]}</div>
+            <div class="grid-cell grid-numbers-row">${numbers.x[columnCount]}</div>
         `;
     }
 
     if (columnCount == 0) {
         return /* html */ `
-            <div class="grid-cell" row="${rowCount}" column="${columnCount}">${numbers.y[rowCount - 1]}</div>
+            <div class="grid-cell grid-numbers-column">${numbers.y[rowCount - 1]}</div>
         `;
     }
+}
+
+function getCellHTML(rowCount, columnCount) {
+    const cells = model.fields.cells;
     
     return /* html */ `
         <div class="grid-cell" row="${rowCount}" column="${columnCount}">${cells[rowCount - 1][columnCount - 1]}</div>
