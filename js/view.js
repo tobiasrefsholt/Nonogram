@@ -40,7 +40,7 @@ function getGameHTML() {
     const size = model.fields.options.boardSize;
     return /* html */ `
         <div class="game-grid grid-size-${size}">
-            ${getGameCellsHTML(size)};
+            ${getGameCellsHTML(size)}
         </div>
     `;
 }
@@ -61,20 +61,33 @@ function getGameCellsHTML(size) {
 
 function getNumberCellsHTML(rowCount, columnCount) {
     const numbers = model.nonogram.numbers;
+    let cellNumbers;
+    let cellNumbersHTML = '';
+    let cellClass;
 
     if (rowCount == 0 && columnCount == 0) return `<div class="grid-cell grid-numbers-row"></div>`;
 
     if (rowCount == 0) {
-        return /* html */ `
-            <div class="grid-cell grid-numbers-row">${numbers.x[columnCount]}</div>
-        `;
+        cellNumbers = numbers.x[columnCount];
+        cellClass = 'grid-numbers-row';
+    } else if (columnCount == 0) {
+        cellNumbers = numbers.y[rowCount - 1];
+        cellClass = 'grid-numbers-column';
+    } else {
+        return;
     }
 
-    if (columnCount == 0) {
-        return /* html */ `
-            <div class="grid-cell grid-numbers-column">${numbers.y[rowCount - 1]}</div>
-        `;
+    if (cellNumbers) {
+        for (let number of cellNumbers) {
+            cellNumbersHTML += /* html */ `
+                <span>${number}</span>
+            `;
+        }
     }
+
+    return /* html */ `
+        <div class="grid-cell ${cellClass}">${cellNumbersHTML}</div>
+    `;
 }
 
 function getCellHTML(rowCount, columnCount) {
