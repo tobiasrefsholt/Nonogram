@@ -49,10 +49,35 @@ function getGameGridCellsHTML(size) {
     let cellsHTML = '';
     for (let rowCount = 0; rowCount <= size; rowCount++) {
         for (let columnCount = 0; columnCount <= size; columnCount++) {
-            cellsHTML += /* html */ `
-                <div class="grid-cell" row="${rowCount}" column="${columnCount}">x</div>
-            `;
+            cellsHTML += getCellHTML(rowCount, columnCount);
         }
     }
     return cellsHTML;
+}
+
+function getCellHTML(rowCount, columnCount) {
+    const numbers = model.fields.numbers;
+    const cells = model.fields.cells;
+    
+    if (rowCount == 0 && columnCount == 0) {
+        return /* html */ `
+            <div class="grid-cell" row="${rowCount}" column="${columnCount}"></div>
+        `;
+    }
+
+    if (rowCount == 0) {
+        return /* html */ `
+            <div class="grid-cell" row="${rowCount}" column="${columnCount}">${numbers.x[columnCount]}</div>
+        `;
+    }
+
+    if (columnCount == 0) {
+        return /* html */ `
+            <div class="grid-cell" row="${rowCount}" column="${columnCount}">${numbers.y[rowCount - 1]}</div>
+        `;
+    }
+    
+    return /* html */ `
+        <div class="grid-cell" row="${rowCount}" column="${columnCount}">${cells[rowCount - 1][columnCount - 1]}</div>
+    `;
 }
