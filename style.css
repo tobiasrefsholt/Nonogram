@@ -1,0 +1,30 @@
+.game-grid {
+    display: grid;
+}
+
+.game-grid .grid-cell {
+    border: solid black 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-grid.grid-size-3 {
+    grid-template-columns: 5rem repeat(3, 2rem);
+    grid-template-rows: 5rem repeat(3, 2rem);
+}
+
+.game-grid.grid-size-5 {
+    grid-template-columns: repeat(6, 2rem);
+    grid-template-rows: repeat(6, 2rem);
+}
+
+.game-grid.grid-size-10 {
+    grid-template-columns: repeat(11, 2rem);
+    grid-template-rows: repeat(11, 2rem);
+}
+
+.game-grid.grid-size-15 {
+    grid-template-columns: repeat(16, 2rem);
+    grid-template-rows: repeat(16, 2rem);
+}

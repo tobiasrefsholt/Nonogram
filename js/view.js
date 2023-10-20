@@ -5,6 +5,9 @@ function updateView() {
     if (model.app.page == "options") {
         html = getOptionsHTML();
     }
+    if (model.app.page == "activeGame") {
+        html = getGameHTML();
+    }
     document.getElementById('app').innerHTML = html;
 }
 
@@ -31,4 +34,25 @@ function getOptionsHTML() {
             <button onclick="initGame()">Start spill</button>
         </div>
     `;
+}
+
+function getGameHTML() {
+    const size = model.app.boardSize;
+    return /* html */ `
+        <div class="game-grid grid-size-${size}">
+            ${getGameGridCellsHTML(size)}
+        </div>
+    `;
+}
+
+function getGameGridCellsHTML(size) {
+    let cellsHTML = '';
+    for (let rowCount = 0; rowCount <= size; rowCount++) {
+        for (let columnCount = 0; columnCount <= size; columnCount++) {
+            cellsHTML += /* html */ `
+                <div class="grid-cell" row="${rowCount}" column="${columnCount}">x</div>
+            `;
+        }
+    }
+    return cellsHTML;
 }
