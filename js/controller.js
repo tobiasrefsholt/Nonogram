@@ -45,8 +45,8 @@ function getNonogramModelNumbers(grid) {
     for (let i=0; i<grid.length; i++) {
         const rowNumbers = countNonogramArray(grid[i]);
         const columnNumbers = countNonogramArray(getColumn(grid, i));
-        nonogramNumbers.x.push(rowNumbers);
-        nonogramNumbers.y.push(columnNumbers);
+        nonogramNumbers.x.push(columnNumbers);
+        nonogramNumbers.y.push(rowNumbers);
     }
     return nonogramNumbers;
 }
@@ -80,9 +80,24 @@ function generateEmptyNonogramFields(size) {
     for (let i=0; i<size; i++) {
         const row = [];
         for (let i=0; i<size; i++) {
-            row.push([0]);
+            row.push(0);
         }
         grid.push(row);
     }
     return grid;
+}
+
+function clickCell(coordinates) {
+    let cell = model.fields.cells[coordinates.row][coordinates.column];
+    const correctValue = model.nonogram.grid[coordinates.row][coordinates.column];
+    const selectedValue = model.fields.selectedValue;
+    console.log(cell);
+    console.log(selectedValue);
+    console.log(correctValue);
+    if (selectedValue == 2 && correctValue == true) {
+        model.fields.cells[coordinates.row][coordinates.column] = selectedValue;
+        console.log("correct!")
+        updateView();
+    }
+    console.log(coordinates);
 }

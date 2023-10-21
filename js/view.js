@@ -70,7 +70,7 @@ function getNumberCellsHTML(rowCount, columnCount) {
     if (rowCount == 0 && columnCount == 0) return `<div class="grid-cell grid-numbers-row"></div>`;
 
     if (rowCount == 0) {
-        cellNumbers = numbers.x[columnCount];
+        cellNumbers = numbers.x[columnCount - 1];
         cellClass = 'grid-numbers-row';
     } else if (columnCount == 0) {
         cellNumbers = numbers.y[rowCount - 1];
@@ -94,8 +94,23 @@ function getNumberCellsHTML(rowCount, columnCount) {
 
 function getCellHTML(rowCount, columnCount) {
     const cells = model.fields.cells;
+    const cellFieldValue = cells[rowCount - 1][columnCount - 1];
+    let cellClass;
+    let cellOnClick = '';
+
+    switch (cellFieldValue) {
+        case 1:
+            cellClass = 'cell-x';
+            break;
+        case 2:
+            cellClass = 'cell-filled';
+            break;
+        default:
+            cellClass = 'cell-empty';
+            cellOnClick = `clickCell({row: ${rowCount - 1}, column: ${columnCount - 1}})`;
+    };
     
     return /* html */ `
-        <div class="grid-cell" row="${rowCount}" column="${columnCount}">${cells[rowCount - 1][columnCount - 1]}</div>
+        <div class="grid-cell ${cellClass}" row="${rowCount - 1}" column="${columnCount - 1}" onclick="${cellOnClick}"></div>
     `;
 }

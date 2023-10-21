@@ -10,6 +10,7 @@ const model = {
             mistakesAllowed: 3,
         },
         mistakes: 0,
+        selectedValue: 2,
         cells: [
             // 0 = blank, 1 = x, 2 = filled
             /* 
