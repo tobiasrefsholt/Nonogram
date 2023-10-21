@@ -38,7 +38,9 @@ function getOptionsHTML() {
 
 function getGameHTML() {
     const size = model.fields.options.boardSize;
+    const mistakesLeft = model.fields.options.mistakesAllowed - model.fields.mistakes;
     return /* html */ `
+        <h2>Remaining mistakes: ${mistakesLeft}</h2>
         <div class="game-grid grid-size-${size}">
             ${getGameCellsHTML(size)}
         </div>
@@ -77,12 +79,12 @@ function getNumberCellsHTML(rowCount, columnCount) {
         return;
     }
 
-    if (cellNumbers) {
-        for (let number of cellNumbers) {
-            cellNumbersHTML += /* html */ `
-                <span>${number}</span>
-            `;
-        }
+    if (!cellNumbers) cellNumbers = [0];
+
+    for (let number of cellNumbers) {
+        cellNumbersHTML += /* html */ `
+            <span>${number}</span>
+        `;
     }
 
     return /* html */ `

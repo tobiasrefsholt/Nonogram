@@ -7,7 +7,9 @@ const model = {
     fields: {
         options: {
             boardSize: 3,
+            mistakesAllowed: 3,
         },
+        mistakes: 0,
         cells: [
             // 0 = blank, 1 = x, 2 = filled
             /* 
