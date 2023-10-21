@@ -44,6 +44,9 @@ function getGameHTML() {
         <div class="game-grid grid-size-${size}">
             ${getGameCellsHTML(size)}
         </div>
+        <div class="game-buttons">
+            <button onclick="solvePuzzle()">Solve puzzle</button>
+        </div>
     `;
 }
 

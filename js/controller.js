@@ -101,3 +101,14 @@ function clickCell(coordinates) {
     }
     console.log(coordinates);
 }
+
+function solvePuzzle() {
+    console.log("Auto solve");
+    console.log(model.nonogram.grid);
+    for(let row=0; row<model.nonogram.grid.length; row++) {
+        for (let column=0; column<model.nonogram.grid.length; column++) {
+            model.fields.cells[row][column] = model.nonogram.grid[row][column] ? 2 : 1;
+        }
+    }
+    updateView();
+}   

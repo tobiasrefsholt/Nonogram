@@ -7,6 +7,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
 }
 
 .game-grid {
@@ -59,4 +60,20 @@ body {
 .game-grid.grid-size-15 {
     grid-template-columns: min-content repeat(15, 2rem);
     grid-template-rows: min-content repeat(15, 2rem);
+}
+
+.choose-board-size {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+button {
+    color: white;
+    font-weight: bold;
+    background-color: #027CB7;
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
 }
