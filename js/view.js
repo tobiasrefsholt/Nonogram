@@ -41,8 +41,13 @@ function getOptionsHTML() {
 function getGameHTML() {
     const size = model.fields.options.boardSize;
     const mistakesLeft = model.fields.options.mistakesAllowed - model.fields.mistakes;
+    const selectedValueClass = (model.fields.selectedValue == 1) ? "cell-x" : "cell-filled";
     return /* html */ `
         <h2>Remaining mistakes: ${mistakesLeft}</h2>
+        <div class="select-cross-or-square" onclick="toggleCrossOrSquare()">
+            <span>Selected: </span>
+            <span class="grid-cell ${selectedValueClass}" style="display: inline-block; width: 2rem; height: 2rem"></span>
+        </div>
         <div class="game-grid grid-size-${size}">
             ${getGameCellsHTML(size)}
         </div>

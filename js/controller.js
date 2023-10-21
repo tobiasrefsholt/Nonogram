@@ -102,6 +102,14 @@ function clickCell(coordinates) {
     console.log(coordinates);
 }
 
+function toggleCrossOrSquare() {
+    console.log(model.fields.selectedValue);
+    model.fields.selectedValue = (model.fields.selectedValue == 1) ? 2 : 1;
+    console.log(model.fields.selectedValue);
+    console.log("Hey there!")
+    updateView();
+}
+
 function solvePuzzle() {
     console.log("Auto solve");
     console.log(model.nonogram.grid);

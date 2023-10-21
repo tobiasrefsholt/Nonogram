@@ -89,3 +89,15 @@ button {
     border-radius: .5rem;
     cursor: pointer;
 }
+
+.select-cross-or-square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: solid 1px #ffffff30;
+    border-radius: .5rem;
+    gap: .5rem;
+    padding: 1rem;
+    user-select: none;
+}
