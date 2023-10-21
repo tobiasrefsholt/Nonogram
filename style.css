@@ -1,6 +1,7 @@
 body {
     background-color: #121212;
     color: #ffffff90;
+    font-size: 1.5rem;
 }
 
 #app {
@@ -22,7 +23,12 @@ body {
 }
 
 .cell-filled {
-    background-color: lightgray;
+    background-color: #ffffff60;
+}
+
+.cell-x {
+    background-image: url("svg/cross-svgrepo-com.svg");
+    background-size: contain;
 }
 
 .game-grid .grid-numbers-row {
@@ -43,29 +49,35 @@ body {
 }
 
 .game-grid.grid-size-3 {
-    grid-template-columns: min-content repeat(3, 2rem);
-    grid-template-rows: min-content repeat(3, 2rem);
+    grid-template-columns: min-content repeat(3, 2em);
+    grid-template-rows: min-content repeat(3, 2em);
 }
 
 .game-grid.grid-size-5 {
-    grid-template-columns: min-content repeat(5, 2rem);
-    grid-template-rows: min-content (5, 2rem);
+    grid-template-columns: min-content repeat(5, 2em);
+    grid-template-rows: min-content (5, 2em);
 }
 
 .game-grid.grid-size-10 {
-    grid-template-columns: min-content repeat(10, 2rem);
-    grid-template-rows: min-content repeat(10, 2rem);
+    grid-template-columns: min-content repeat(10, 2em);
+    grid-template-rows: min-content repeat(10, 2em);
 }
 
 .game-grid.grid-size-15 {
-    grid-template-columns: min-content repeat(15, 2rem);
-    grid-template-rows: min-content repeat(15, 2rem);
+    grid-template-columns: min-content repeat(15, 2em);
+    grid-template-rows: min-content repeat(15, 2em);
 }
 
 .choose-board-size {
     display: flex;
     gap: 1rem;
     align-items: center;
+}
+
+.radio-buttons {
+    background-color: #181A1B;
+    padding: 1rem;
+    border-radius: .5rem;
 }
 
 button {
