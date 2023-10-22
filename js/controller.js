@@ -88,7 +88,6 @@ function generateEmptyNonogramFields(size) {
 }
 
 function clickCell(coordinates) {
-    let cell = model.fields.cells[coordinates.row][coordinates.column];
     const correctValue = model.nonogram.grid[coordinates.row][coordinates.column];
     const selectedValue = model.fields.selectedValue;
     console.log(coordinates);
@@ -99,7 +98,22 @@ function clickCell(coordinates) {
         model.fields.mistakes++;
         console.log("Wrong!")
     }
+    if (model.fields.options.mistakesAllowed - model.fields.mistakes < 0) {
+        gameOver();
+    } else if (JSON.stringify(model.fields.cells) == JSON.stringify(model.nonogram.grid)) {
+        gameWon();
+    }
     updateView();
+}
+
+function gameOver() {
+    model.app.page = "gameFinished";
+    model.fields.gameFinished.isWin = false;
+}
+
+function gameWon() {
+    model.app.page = "gameFinished";
+    model.fields.gameFinished.isWin = true;
 }
 
 function toggleCrossOrSquare() {
@@ -115,8 +129,17 @@ function solvePuzzle() {
     console.log(model.nonogram.grid);
     for(let row=0; row<model.nonogram.grid.length; row++) {
         for (let column=0; column<model.nonogram.grid.length; column++) {
-            model.fields.cells[row][column] = model.nonogram.grid[row][column] ? 2 : 1;
+            model.fields.cells[row][column] = model.nonogram.grid[row][column];
         }
     }
     updateView();
 }   
+
+function restartGame() {
+    model.nonogram = null;
+    model.fields.cells = null;
+    model.fields.mistakes = 0;
+    model.fields.gameFinished.isWin = null;
+    model.app.page = "options";
+    updateView();
+}

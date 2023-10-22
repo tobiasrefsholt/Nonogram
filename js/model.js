@@ -9,6 +9,9 @@ const model = {
             boardSize: 3,
             mistakesAllowed: 3,
         },
+        gameFinished: {
+            isWin: null,
+        },
         mistakes: 0,
         selectedValue: 2,
         cells: [

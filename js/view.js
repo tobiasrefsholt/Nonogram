@@ -5,8 +5,11 @@ function updateView() {
     if (model.app.page == "options") {
         html = getOptionsHTML();
     }
-    if (model.app.page == "activeGame") {
+    else if (model.app.page == "activeGame") {
         html = getGameHTML();
+    }
+    else if (model.app.page == "gameFinished") {
+        html = getGameFinishedHTML();
     }
     document.getElementById('app').innerHTML = html;
 }
@@ -122,5 +125,13 @@ function getCellHTML(rowCount, columnCount) {
     
     return /* html */ `
         <div class="grid-cell ${cellClass}" row="${rowCount - 1}" column="${columnCount - 1}" onclick="${cellOnClick}"></div>
+    `;
+}
+
+function getGameFinishedHTML() {
+    const title = model.fields.gameFinished.isWin ? "You win!" : "Game over! Better luck next time.";
+    return /* html */ `
+        <h2>${title}</h2>
+        <button onclick="restartGame()">Play more!</button>
     `;
 }
