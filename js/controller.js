@@ -36,7 +36,7 @@ function generateNonogramModelRow(size) {
 
 function generateNonogramModelCell() {
     const filledProbability = 0.6;
-    const isFilled = Math.random() < filledProbability;
+    const isFilled = (Math.random() < filledProbability) ? 2 : 1;
     return isFilled;
 }
 
@@ -55,10 +55,10 @@ function countNonogramArray(row) {
     const rowNumbers = [];
     let lastCell = false;
     for (let cell of row) {
-        if (cell == true && lastCell == true) {
+        if (cell === 2 && lastCell === 2) {
             rowNumbers[rowNumbers.length - 1]++;
         }
-        else if (cell === true) {
+        else if (cell === 2) {
             rowNumbers.push(1);
         }
         lastCell = cell;
@@ -91,15 +91,15 @@ function clickCell(coordinates) {
     let cell = model.fields.cells[coordinates.row][coordinates.column];
     const correctValue = model.nonogram.grid[coordinates.row][coordinates.column];
     const selectedValue = model.fields.selectedValue;
-    console.log(cell);
-    console.log(selectedValue);
-    console.log(correctValue);
-    if (selectedValue == 2 && correctValue == true) {
-        model.fields.cells[coordinates.row][coordinates.column] = selectedValue;
-        console.log("correct!")
-        updateView();
-    }
     console.log(coordinates);
+    if (selectedValue === correctValue) {
+        model.fields.cells[coordinates.row][coordinates.column] = selectedValue;
+        console.log("Correct!")
+    } else {
+        model.fields.mistakes++;
+        console.log("Wrong!")
+    }
+    updateView();
 }
 
 function toggleCrossOrSquare() {
