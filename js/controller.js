@@ -135,11 +135,17 @@ function solvePuzzle() {
     updateView();
 }   
 
-function restartGame() {
+function newGame() {
     model.nonogram = null;
     model.fields.cells = null;
     model.fields.mistakes = 0;
     model.fields.gameFinished.isWin = null;
     model.app.page = "options";
+    updateView();
+}
+
+function resetBoard() {
+    model.fields.cells = generateEmptyNonogramFields(model.fields.options.boardSize);
+    model.fields.mistakes = 0;
     updateView();
 }

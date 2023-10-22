@@ -55,6 +55,7 @@ function getGameHTML() {
             ${getGameCellsHTML(size)}
         </div>
         <div class="game-buttons">
+            <button onclick="resetBoard()">Restart</button>
             <button onclick="solvePuzzle()">Solve puzzle</button>
         </div>
     `;
@@ -132,6 +133,6 @@ function getGameFinishedHTML() {
     const title = model.fields.gameFinished.isWin ? "You win!" : "Game over! Better luck next time.";
     return /* html */ `
         <h2>${title}</h2>
-        <button onclick="restartGame()">Play more!</button>
+        <button onclick="newGame()">Play more!</button>
     `;
 }
