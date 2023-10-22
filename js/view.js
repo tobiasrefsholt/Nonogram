@@ -56,7 +56,8 @@ function getGameHTML() {
         </div>
         <div class="game-buttons">
             <button onclick="resetBoard()">Restart</button>
-            <button onclick="solvePuzzle()">Solve puzzle</button>
+            <button onclick="solvePuzzle()">Solve</button>
+            <button onclick="newGame()">New game</button>
         </div>
     `;
 }
